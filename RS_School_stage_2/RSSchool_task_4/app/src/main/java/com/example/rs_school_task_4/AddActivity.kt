@@ -12,14 +12,17 @@ class AddActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
 
+        // TODO var, move to lateinit
         var model :EditText = findViewById(R.id.Model)
         var age :EditText = findViewById(R.id.Age)
         var color :EditText = findViewById(R.id.Color)
 
 
+        // TODO naming
         var Add : Button = findViewById(R.id.btn_Add)
         Add.setOnClickListener{
 
+            // TODO hardcoded values
             var intentAdd : Intent = Intent()
             intentAdd.putExtra("age", age.getText().toString())
             intentAdd.putExtra("color", color.getText().toString())

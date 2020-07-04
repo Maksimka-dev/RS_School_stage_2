@@ -8,6 +8,7 @@ class App : Application() {
         lateinit var instance: App
     }
 
+    // TODO maybe onCreate would be better
     init {
         instance = this
     }

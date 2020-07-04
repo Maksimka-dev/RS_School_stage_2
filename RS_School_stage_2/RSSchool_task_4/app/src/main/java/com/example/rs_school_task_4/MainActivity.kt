@@ -18,17 +18,21 @@ class MainActivity : AppCompatActivity() {
 
     private val dao = Dao()
     val myAdaptor = MyRecyclerViewAdepter()
+    // TODO var and mutable list, could be changed any time
     var currentTable :MutableList<Table> = mutableListOf()
 
+    // TODO lateinit var anyView: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // TODO it's possible to move it into constructor
         setContentView(R.layout.activity_main)
 
         val btnAdd :FloatingActionButton = findViewById(R.id.button_Add)
         btnAdd.setOnClickListener{
 
             val addIntent :Intent = Intent(this, AddActivity::class.java)
+            // TODO requestCode is hardcoded
             startActivityForResult(addIntent,1)
 
         }
@@ -37,14 +41,18 @@ class MainActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         currentTable = dao.queryForAll()
+        // TODO
         myAdaptor.DelAllItem()
         myAdaptor.AddItems(currentTable)
 
         recyclerView.adapter = myAdaptor
     }
 
+
     override fun onResume() {
+        // TODO use another callback to update ui
         val prefs = PreferenceManager.getDefaultSharedPreferences(this)
+        // TODO when, hardcoded keys
         if(prefs.getBoolean("modelName", false)){
 
             currentTable.sortBy { it.modelName }
@@ -69,11 +77,15 @@ class MainActivity : AppCompatActivity() {
         currentTable.clear()
     }
 
+    // TODO adding new items is responsibility of AddActivity not MainActivity
+    // TODO when it's implemented onActivityResult will be redundant and just lifecycle callbacks
+    // TODO will be used
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (data == null) return
 
         val addCar : Table = Table()
+        // TODO vars, not safe data parsing
         addCar.age = data.getStringExtra("age").toInt()
         addCar.color = data.getStringExtra("color")
         addCar.modelName = data.getStringExtra("modelName")
