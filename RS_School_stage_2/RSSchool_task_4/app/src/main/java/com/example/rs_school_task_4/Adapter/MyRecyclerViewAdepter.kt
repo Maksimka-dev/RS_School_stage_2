@@ -22,6 +22,8 @@ class MyRecyclerViewAdepter : RecyclerView.Adapter<MyViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        // TODO RecyclerView.NO_POSITION
+        RecyclerView.NO_POSITION
         val model = item[position].modelName
         val age = item[position].age.toString()
         val color = item[position].color
@@ -43,6 +45,7 @@ class MyRecyclerViewAdepter : RecyclerView.Adapter<MyViewHolder>(){
 
 class MyViewHolder(itemView: View) :RecyclerView.ViewHolder(itemView){
 
+    // TODO private
     val carModelName = itemView.findViewById<TextView>(R.id.CarModel)
     val carAge = itemView.findViewById<TextView>(R.id.CarAge)
     val carColor = itemView.findViewById<TextView>(R.id.CarColor)
